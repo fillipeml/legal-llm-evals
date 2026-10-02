@@ -43,9 +43,27 @@ QUESTION = (
 )
 
 
+def invalid_check_digits(sequential: int) -> str:
+    """Two digits that are deliberately *not* the CNJ check digits for this number.
+
+    A CNJ number verifies by ISO 7064 mod 97-10: the check digits are
+    ``98 - (NNNNNNN AAAA J TR OOOO * 100) mod 97``. An earlier version of this script picked
+    them from an arithmetic sequence, and one number in sixty landed on the correct value by
+    accident — enough for a scanner to flag it as a real case number, and a reminder that
+    "obviously fake" is not a property you get to assume.
+
+    So compute the right answer and return something else.
+    """
+    base = int(f"{sequential}20998260100")
+    correct = 98 - (base * 100) % 97
+    wrong = (correct % 89) + 10 if (correct % 89) + 10 != correct else correct + 1
+    assert wrong != correct and 10 <= wrong <= 99
+    return f"{wrong:02d}"
+
+
 def decision_text(i: int, outcome: str, retention: int, index: str, fee: int) -> str:
     """A short, synthetic operative part. Portuguese, because the documents would be."""
-    case = f"{1000000 + i}-{(i * 7) % 90 + 10}.2099.8.26.0100"
+    case = f"{1000000 + i}-{invalid_check_digits(1000000 + i)}.2099.8.26.0100"
     return (
         f"Processo nº {case}. 2ª Vara Cível da Comarca de Porto das Águas, Estado de "
         f"Zetalândia. Ante o exposto, {outcome} o pedido para condenar a ré à restituição "

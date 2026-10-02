@@ -97,6 +97,27 @@ class TestEvalSet:
         for row in eval_set.items:
             assert ".2099." in row.source, row.id
 
+    def test_no_case_number_could_verify_as_a_real_one(self) -> None:
+        """A CNJ number verifies by ISO 7064 mod 97-10. None of these do.
+
+        The first version of the generator picked its check digits from an arithmetic
+        sequence and one number in sixty landed on the correct value by accident, which a
+        scanner duly flagged. "Obviously fake" is not a property you get to assume.
+        """
+        import re
+
+        eval_set = EvalSet.load(SET)
+        pattern = re.compile(r"(\d{7})-(\d{2})\.(\d{4})\.(\d)\.(\d{2})\.(\d{4})")
+        found = 0
+        for row in eval_set.items:
+            for sequential, check, year, segment, court, origin in pattern.findall(row.source):
+                found += 1
+                base = int(sequential + year + segment + court + origin)
+                assert int(check) != 98 - (base * 100) % 97, (
+                    f"{row.id} carries a case number whose check digits verify"
+                )
+        assert found == len(eval_set)
+
 
 class TestGraders:
     def test_numbers_survive_brazilian_decimal_notation(self) -> None:
