@@ -1,0 +1,3 @@
+* text=auto eol=lf
+fixtures/*.json linguist-generated
+fixtures/graders/*.json linguist-generated

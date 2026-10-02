@@ -1,0 +1,11 @@
+[brand]
+terms = ["STG", "STGLaw", "Schmeisser", "Terra Gomes", "stglaw", "RenavePro", "Cipasa"]
+
+[domains]
+internal = ["stglaw.com.br", "stgadvogados.com.br"]
+
+[hosts]
+suffixes = ["sharepoint.com", "onmicrosoft.com", "railway.app"]
+
+[allow]
+paths = []
