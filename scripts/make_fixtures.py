@@ -263,7 +263,7 @@ def build_grader(name: str, items: list[dict], seed: int) -> dict:
 
 
 #: What a prompt change fixed and what it broke, for the paired-comparison demonstration.
-#: Deliberately modest: six fixes and two regressions out of sixty is the shape of a real
+#: Deliberately modest: ten fixes and two regressions out of sixty is the shape of a real
 #: iteration, and it is right at the edge of what sixty items can distinguish from chance —
 #: which is the lesson.
 V2_FIXES = {"missing_index", "hedged"}

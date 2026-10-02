@@ -207,7 +207,7 @@ overfitting trap waiting at the end of it.
 ## Statistics, with no numpy and no scipy
 
 The package has **zero runtime dependencies**. Wilson intervals, Cohen's and Fleiss' kappa,
-exact McNemar and the percentile bootstrap are three hundred and fifty lines of `statistics`
+exact McNemar and the percentile bootstrap are three hundred and sixty lines of `statistics`
 and `math`, and every expected value in the tests was computed independently rather than by
 running the code and pasting the answer.
 
@@ -368,7 +368,7 @@ absent — which is why the demo and the full test suite run with no key.
 
 ```bash
 pip install -e ".[dev]"
-pytest          # 73 tests
+pytest          # 79 tests
 ruff check .
 ruff format --check .
 ```
