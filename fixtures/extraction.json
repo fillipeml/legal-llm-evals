@@ -1,0 +1,726 @@
+{
+  "name": "judgment-field-extraction",
+  "description": "Sixty synthetic Brazilian court decisions, each with a gold extraction of outcome, retention, index and fee, a candidate answer, and a human verdict on that candidate. Every case number is dated 2099 with check digits that do not compute.",
+  "items": [
+    {
+      "id": "item-001",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000001-17.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 20%. Índice: IGP-M. Honorários: 10%.",
+      "candidate": "Resultado: extinto. Retenção: 20%. Índice: IGP-M. Honorários: 10%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-002",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000002-24.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 20%. Índice: INPC. Honorários: 15%.",
+      "candidate": "Resultado: extinto. Retenção: 20%. Honorários: 15%.",
+      "human": "partial",
+      "tags": [
+        "missing_index"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-003",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000003-31.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 20%. Índice: INPC. Honorários: 10%.",
+      "candidate": "O pedido foi julgado extinto, com retenção de 20% sobre os valores pagos, correção pelo INPC e honorários de 10%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-004",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000004-38.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 10%. Índice: IGP-M. Honorários: 12%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 10%. Índice: IGP-M. Honorários: 12%. Multa contratual: 2%.",
+      "human": "partial",
+      "tags": [
+        "extra_figure"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-005",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000005-45.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 10%. Índice: INPC. Honorários: 20%.",
+      "candidate": "Honorários: 20%. Índice: INPC. Retenção: 10%. Resultado: improcedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-006",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000006-52.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 25%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 25%. Honorários: 12%.",
+      "human": "partial",
+      "tags": [
+        "missing_index"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-007",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000007-59.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 15%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Aparentemente o pedido foi julgado extinto; a retenção parece ser de 15%, com correção pelo IPCA e honorários de 12%, embora a redação não seja inteiramente clara.",
+      "human": "partial",
+      "tags": [
+        "hedged"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-008",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000008-66.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 5%. Índice: IGP-M. Honorários: 15%.",
+      "candidate": "Honorários: 15%. Índice: IGP-M. Retenção: 5%. Resultado: parcialmente procedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-009",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000009-73.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 15%. Índice: IPCA. Honorários: 10%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 15%. Índice: IPCA. Honorários: 10%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-010",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000010-80.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 5%. Índice: INPC. Honorários: 10%.",
+      "candidate": "Resultado: extinto. Retenção: 10%. Índice: INPC. Honorários: 10%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_retention"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-011",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000011-87.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 20%. Índice: IPCA. Honorários: 20%.",
+      "candidate": "Resultado: improcedente. Retenção: 20%. Índice: IPCA. Honorários: 20%. Multa contratual: 2%.",
+      "human": "partial",
+      "tags": [
+        "extra_figure"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-012",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000012-94.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: INPC. Honorários: 10%.",
+      "candidate": "Resultado: improcedente. Retenção: 15%. Honorários: 10%.",
+      "human": "partial",
+      "tags": [
+        "missing_index"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-013",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000013-11.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 5%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: improcedente. Retenção: 5%. Índice: IPCA. Honorários: 12%. Multa contratual: 3%.",
+      "human": "correct",
+      "tags": [
+        "extra_figure"
+      ],
+      "note": "the extra figure was in the source and is harmless"
+    },
+    {
+      "id": "item-014",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000014-18.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 25%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "O pedido foi julgado procedente, com retenção de 25% sobre os valores pagos, correção pelo IPCA e honorários de 12%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-015",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000015-25.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 10%. Índice: IPCA. Honorários: 20%.",
+      "candidate": "Resultado: improcedente. Retenção: 20%. Índice: IPCA. Honorários: 20%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_retention"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-016",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000016-32.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 10%. Índice: IGP-M. Honorários: 15%.",
+      "candidate": "Resultado: procedente. Retenção: 10%. Índice: IGP-M. Honorários: 15%. Multa contratual: 8%.",
+      "human": "partial",
+      "tags": [
+        "extra_figure"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-017",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000017-39.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: INPC. Honorários: 20%.",
+      "candidate": "Resultado: improcedente. Retenção: 15%. Índice: INPC. Honorários: 20%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-018",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000018-46.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 5%. Índice: INPC. Honorários: 20%.",
+      "candidate": "Honorários: 20%. Índice: INPC. Retenção: 5%. Resultado: extinto.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-019",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000019-53.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 25%. Índice: IGP-M. Honorários: 12%.",
+      "candidate": "Aparentemente o pedido foi julgado procedente; a retenção parece ser de 25%, com correção pelo IGP-M e honorários de 12%, embora a redação não seja inteiramente clara.",
+      "human": "correct",
+      "tags": [
+        "hedged"
+      ],
+      "note": "the hedging is stylistic; every figure is right"
+    },
+    {
+      "id": "item-020",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000020-60.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 15%. Índice: INPC. Honorários: 15%.",
+      "candidate": "Aparentemente o pedido foi julgado procedente; a retenção parece ser de 15%, com correção pelo INPC e honorários de 15%, embora a redação não seja inteiramente clara.",
+      "human": "partial",
+      "tags": [
+        "hedged"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-021",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000021-67.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 5%. Índice: IGP-M. Honorários: 20%.",
+      "candidate": "Resultado: improcedente. Retenção: 5%. Índice: IGP-M. Honorários: 20%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-022",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000022-74.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: IGP-M. Honorários: 12%.",
+      "candidate": "O pedido foi julgado improcedente, com retenção de 15% sobre os valores pagos, correção pelo IGP-M e honorários de 12%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-023",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000023-81.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 15%. Índice: IPCA. Honorários: 15%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 15%. Índice: IPCA. Honorários: 15%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-024",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000024-88.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 15%. Índice: INPC. Honorários: 12%.",
+      "candidate": "Honorários: 12%. Índice: INPC. Retenção: 15%. Resultado: procedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-025",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000025-95.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 20%. Índice: IPCA. Honorários: 15%.",
+      "candidate": "O pedido foi julgado improcedente, com retenção de 20% sobre os valores pagos, correção pelo IPCA e honorários de 15%.",
+      "human": "partial",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": "the paraphrase lost the basis of the index"
+    },
+    {
+      "id": "item-026",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000026-12.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 10%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 10%. Índice: IPCA. Honorários: 12%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-027",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000027-19.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 10%. Índice: IPCA. Honorários: 20%.",
+      "candidate": "O pedido foi julgado extinto, com retenção de 10% sobre os valores pagos, correção pelo IPCA e honorários de 20%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-028",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000028-26.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 10%. Índice: IGP-M. Honorários: 15%.",
+      "candidate": "O pedido foi julgado procedente, com retenção de 10% sobre os valores pagos, correção pelo IGP-M e honorários de 15%.",
+      "human": "partial",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": "the paraphrase lost the basis of the index"
+    },
+    {
+      "id": "item-029",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000029-33.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 5%. Índice: IPCA. Honorários: 20%.",
+      "candidate": "O pedido foi julgado procedente, com retenção de 5% sobre os valores pagos, correção pelo IPCA e honorários de 20%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-030",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000030-40.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 10%. Índice: IPCA. Honorários: 10%.",
+      "candidate": "O pedido foi julgado improcedente, com retenção de 10% sobre os valores pagos, correção pelo IPCA e honorários de 10%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-031",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000031-47.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 15%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: procedente. Retenção: 15%. Índice: IPCA. Honorários: 15%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_fee"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-032",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000032-54.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 20%. Índice: IGP-M. Honorários: 12%.",
+      "candidate": "Resultado: improcedente. Retenção: 20%. Índice: IGP-M. Honorários: 12%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-033",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000033-61.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 10%. Índice: INPC. Honorários: 20%.",
+      "candidate": "O pedido foi julgado improcedente, com retenção de 10% sobre os valores pagos, correção pelo INPC e honorários de 20%.",
+      "human": "partial",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": "the paraphrase lost the basis of the index"
+    },
+    {
+      "id": "item-034",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000034-68.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 5%. Índice: IGP-M. Honorários: 20%.",
+      "candidate": "Honorários: 20%. Índice: IGP-M. Retenção: 5%. Resultado: improcedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-035",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000035-75.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 5%. Índice: INPC. Honorários: 10%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 5%. Índice: INPC. Honorários: 10%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-036",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000036-82.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 10%. Índice: IGP-M. Honorários: 15%.",
+      "candidate": "Honorários: 15%. Índice: IGP-M. Retenção: 10%. Resultado: improcedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-037",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000037-89.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 20%. Índice: INPC. Honorários: 12%.",
+      "candidate": "Resultado: procedente. Retenção: 20%. Índice: INPC. Honorários: 12%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-038",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000038-96.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: IPCA. Honorários: 20%.",
+      "candidate": "Resultado: improcedente. Retenção: 15%. Índice: IPCA. Honorários: 20%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-039",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000039-13.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 10%. Índice: INPC. Honorários: 15%.",
+      "candidate": "O pedido foi julgado extinto, com retenção de 10% sobre os valores pagos, correção pelo INPC e honorários de 15%.",
+      "human": "partial",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": "the paraphrase lost the basis of the index"
+    },
+    {
+      "id": "item-040",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000040-20.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 5%. Índice: IGP-M. Honorários: 15%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 5%. Índice: IGP-M. Honorários: 15%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-041",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000041-27.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 5%. Índice: IPCA. Honorários: 15%.",
+      "candidate": "O pedido foi julgado extinto, com retenção de 5% sobre os valores pagos, correção pelo IPCA e honorários de 15%.",
+      "human": "partial",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": "the paraphrase lost the basis of the index"
+    },
+    {
+      "id": "item-042",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000042-34.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 25%. Índice: INPC. Honorários: 10%.",
+      "candidate": "Honorários: 10%. Índice: INPC. Retenção: 25%. Resultado: extinto.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-043",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000043-41.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 20%. Índice: IGP-M. Honorários: 20%.",
+      "candidate": "Honorários: 20%. Índice: IGP-M. Retenção: 20%. Resultado: improcedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-044",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000044-48.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 20%. Índice: IGP-M. Honorários: 12%.",
+      "candidate": "Resultado: improcedente. Retenção: 20%. Índice: IGP-M. Honorários: 12%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_outcome"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-045",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000045-55.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: INPC. Honorários: 12%.",
+      "candidate": "Resultado: improcedente. Retenção: 15%. Índice: INPC. Honorários: 12%. Multa contratual: 2%.",
+      "human": "partial",
+      "tags": [
+        "extra_figure"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-046",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000046-62.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 20%. Índice: IGP-M. Honorários: 10%.",
+      "candidate": "Resultado: procedente. Retenção: 20%. Honorários: 10%.",
+      "human": "partial",
+      "tags": [
+        "missing_index"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-047",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000047-69.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 20%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "O pedido foi julgado extinto, com retenção de 20% sobre os valores pagos, correção pelo IPCA e honorários de 12%.",
+      "human": "correct",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-048",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000048-76.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 5% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 5%. Índice: IPCA. Honorários: 10%.",
+      "candidate": "Resultado: improcedente. Retenção: 5%. Índice: IPCA. Honorários: 10%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-049",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000049-83.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 25%. Índice: IPCA. Honorários: 20%.",
+      "candidate": "Resultado: parcialmente procedente. Retenção: 25%. Índice: IPCA. Honorários: 20%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-050",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000050-90.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 20%. Índice: IGP-M. Honorários: 15%.",
+      "candidate": "Honorários: 15%. Índice: IGP-M. Retenção: 20%. Resultado: procedente.",
+      "human": "correct",
+      "tags": [
+        "reordered"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-051",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000051-97.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 15% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 20%. Índice: INPC. Honorários: 15%.",
+      "candidate": "O pedido foi julgado improcedente, com retenção de 20% sobre os valores pagos, correção pelo INPC e honorários de 15%.",
+      "human": "partial",
+      "tags": [
+        "paraphrased"
+      ],
+      "note": "the paraphrase lost the basis of the index"
+    },
+    {
+      "id": "item-052",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000052-14.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 20% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 20%. Índice: IGP-M. Honorários: 20%.",
+      "candidate": "Resultado: extinto. Retenção: 20%. Honorários: 20%.",
+      "human": "partial",
+      "tags": [
+        "missing_index"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-053",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000053-21.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: procedente. Retenção: 15%. Índice: INPC. Honorários: 20%.",
+      "candidate": "Aparentemente o pedido foi julgado procedente; a retenção parece ser de 15%, com correção pelo INPC e honorários de 20%, embora a redação não seja inteiramente clara.",
+      "human": "partial",
+      "tags": [
+        "hedged"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-054",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000054-28.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 10%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: procedente. Retenção: 10%. Índice: IPCA. Honorários: 12%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_outcome"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-055",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000055-35.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO EXTINTO o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: extinto. Retenção: 15%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: extinto. Retenção: 15%. Honorários: 12%.",
+      "human": "partial",
+      "tags": [
+        "missing_index"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-056",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000056-42.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: IGP-M. Honorários: 10%.",
+      "candidate": "Resultado: improcedente. Retenção: 15%. Índice: IGP-M. Honorários: 15%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_fee"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-057",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000057-49.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 25%. Índice: INPC. Honorários: 12%.",
+      "candidate": "Resultado: improcedente. Retenção: 25%. Índice: INPC. Honorários: 12%.",
+      "human": "correct",
+      "tags": [
+        "verbatim"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-058",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000058-56.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 25% a título de despesas administrativas, corrigidos pelo IGP-M desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 10% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 25%. Índice: IGP-M. Honorários: 10%.",
+      "candidate": "Resultado: improcedente. Retenção: 20%. Índice: IGP-M. Honorários: 10%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_retention"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-059",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000059-63.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO PARCIALMENTE PROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 10% a título de despesas administrativas, corrigidos pelo INPC desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 20% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: parcialmente procedente. Retenção: 10%. Índice: INPC. Honorários: 20%.",
+      "candidate": "Aparentemente o pedido foi julgado parcialmente procedente; a retenção parece ser de 10%, com correção pelo INPC e honorários de 20%, embora a redação não seja inteiramente clara.",
+      "human": "partial",
+      "tags": [
+        "hedged"
+      ],
+      "note": ""
+    },
+    {
+      "id": "item-060",
+      "question": "Extract the final outcome, the retention percentage, the indexation index and the fee percentage from this decision.",
+      "source": "Processo nº 1000060-70.2099.8.26.0100. 2ª Vara Cível da Comarca de Porto das Águas, Estado de Zetalândia. Ante o exposto, JULGADO IMPROCEDENTE o pedido para condenar a ré à restituição dos valores pagos, com retenção de 15% a título de despesas administrativas, corrigidos pelo IPCA desde cada desembolso e acrescidos de juros de mora de 1% ao mês a contar da citação. Custas processuais e honorários advocatícios fixados em 12% sobre o valor da condenação, a cargo da ré.",
+      "gold": "Resultado: improcedente. Retenção: 15%. Índice: IPCA. Honorários: 12%.",
+      "candidate": "Resultado: improcedente. Retenção: 25%. Índice: IPCA. Honorários: 12%.",
+      "human": "incorrect",
+      "tags": [
+        "wrong_retention"
+      ],
+      "note": ""
+    }
+  ]
+}

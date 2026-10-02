@@ -1,0 +1,306 @@
+{
+  "grader": "judge-lenient",
+  "is_model": true,
+  "verdicts": [
+    {
+      "item_id": "item-001",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-002",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-003",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-004",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-005",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-006",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-007",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-008",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-009",
+      "label": "partial",
+      "rationale": "the answer is incomplete or asserts something the gold answer does not"
+    },
+    {
+      "item_id": "item-010",
+      "label": "incorrect",
+      "rationale": "at least one figure contradicts the gold answer"
+    },
+    {
+      "item_id": "item-011",
+      "label": "partial",
+      "rationale": "the answer is incomplete or asserts something the gold answer does not"
+    },
+    {
+      "item_id": "item-012",
+      "label": "partial",
+      "rationale": "the answer is incomplete or asserts something the gold answer does not"
+    },
+    {
+      "item_id": "item-013",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-014",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-015",
+      "label": "incorrect",
+      "rationale": "at least one figure contradicts the gold answer"
+    },
+    {
+      "item_id": "item-016",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-017",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-018",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-019",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-020",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-021",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-022",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-023",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-024",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-025",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-026",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-027",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-028",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-029",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-030",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-031",
+      "label": "partial",
+      "rationale": "the answer is incomplete or asserts something the gold answer does not"
+    },
+    {
+      "item_id": "item-032",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-033",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-034",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-035",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-036",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-037",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-038",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-039",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-040",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-041",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-042",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-043",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-044",
+      "label": "incorrect",
+      "rationale": "at least one figure contradicts the gold answer"
+    },
+    {
+      "item_id": "item-045",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-046",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-047",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-048",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-049",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-050",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-051",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-052",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-053",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-054",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-055",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-056",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-057",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-058",
+      "label": "incorrect",
+      "rationale": "at least one figure contradicts the gold answer"
+    },
+    {
+      "item_id": "item-059",
+      "label": "correct",
+      "rationale": "every figure in the gold answer is present and none is contradicted"
+    },
+    {
+      "item_id": "item-060",
+      "label": "partial",
+      "rationale": "the answer is incomplete or asserts something the gold answer does not"
+    }
+  ]
+}
