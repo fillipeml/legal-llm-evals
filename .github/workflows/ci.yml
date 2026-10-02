@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: lint, test, and run the whole evaluation offline
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+
+      - run: pip install -e ".[dev]"
+
+      - run: ruff check .
+
+      - run: ruff format --check .
+
+      - run: pytest -q
+
+      # The claim on the tin: the whole evaluation runs with no key and no network call. The
+      # job has no secrets, so a step that reached for one would fail here.
+      - name: The demo runs offline
+        run: evals demo
+
+      - name: The paired comparison runs
+        run: evals compare --before fixtures/extraction.json --after fixtures/extraction-v2.json
+
+  reproducible:
+    name: the fixtures are a function of the seed, not of anything real
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+
+      # Regenerating from the seed must reproduce the committed fixtures byte for byte. This is
+      # the load-bearing check behind "every item is invented": a file that came from somewhere
+      # else could not survive it, and neither could an edit made by hand to flatter a number.
+      - name: Regenerate the fixtures and require no diff
+        run: |
+          python scripts/make_fixtures.py
+          git diff --exit-code -- fixtures/
+
+      # Belt and braces on the same claim, from the other direction: a real Brazilian case
+      # number cannot be dated 2099, and no document identifier belongs in a public fixture.
+      - name: No real case numbers and no document identifiers
+        run: |
+          set -e
+          years=$(grep -rhoE '[0-9]{7}-[0-9]{2}\.[0-9]{4}' fixtures/ | sed 's/.*\.//' | sort -u | xargs)
+          if [ "$years" != "2099" ]; then
+            echo "a case number outside the 2099 convention is in the fixtures: $years"; exit 1
+          fi
+          if grep -rEn '[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}' fixtures/; then
+            echo "a CPF-shaped string is in the fixtures"; exit 1
+          fi
+          if grep -rEn '[0-9]{2}\.[0-9]{3}\.[0-9]{3}/[0-9]{4}-[0-9]{2}' fixtures/; then
+            echo "a CNPJ-shaped string is in the fixtures"; exit 1
+          fi
+          echo "ok"
+
+  secrets:
+    name: secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
