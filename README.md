@@ -6,6 +6,8 @@ calibration against human labels.**
 
 Both rules are enforced in code. A convention survives exactly as long as nobody is in a hurry.
 
+![CI](https://github.com/fillipeml/legal-llm-evals/actions/workflows/ci.yml/badge.svg) ![Licence: MIT](https://img.shields.io/badge/licence-MIT-informational) ![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue) ![Runtime dependencies: 0](https://img.shields.io/badge/runtime%20dependencies-0-success)
+
 The worked example is extraction from Brazilian court decisions — pull the outcome, the
 retention percentage, the correction index and the fee from a judgment — but nothing in the
 harness is specific to law.
@@ -268,6 +270,120 @@ works demonstrates nothing.
   hidden, and easy to change.
 
 ---
+
+## Known failure modes
+
+**A grader can be well calibrated on your holdout and wrong on everything else.** Kappa measured
+on twenty items is a noisy estimate, and the interval next to it says how noisy. The harness
+reports this honestly and cannot fix it.
+
+**Calibrating against the same set you tune the grader on is overfitting, and it does not look
+like overfitting.** Once you edit a judge's prompt and re-read kappa, that kappa is a training
+score. The harness cannot detect this — it cannot see how many times you ran it. Hold back a
+second labelled set. This is the one discipline here that has to stay in your head, and it has
+its own section in [docs/wiring-a-model-grader.md](docs/wiring-a-model-grader.md).
+
+**The human labels can be wrong.** The package treats them as ground truth because something has
+to be, but inter-rater agreement between people is the next thing to measure and this repository
+does not ship it. `fleiss_kappa` will take their labels when you have them.
+
+**A grader can be blind to exactly what changed and report no difference with confidence.** This
+happened here and is documented above. `compare` warns when a grader finds zero disagreements,
+which is a heuristic, not a guarantee — a grader that is half-blind will report a real but
+understated difference and nothing will flag it.
+
+**A slice of five items produces a number that looks like a finding.** `20.0% [3.6, 62.4], n=5`
+is not a measurement of anything. The interval is the warning; nothing stops you quoting the
+point estimate without it.
+
+**`ExactGrader` forgives accents and case**, which makes it a slightly higher floor than a byte
+comparison would be. That is deliberate for Portuguese, where a missing cedilla is not a wrong
+answer, and it is the kind of decision worth knowing about before using the floor as evidence
+that a task is easy.
+
+## How AI was used
+
+No model is involved at runtime. The package has zero runtime dependencies and the entire
+evaluation runs offline.
+
+An AI coding assistant was used to build it. Four things it got wrong are worth recording,
+because each was caught by something other than reading the code:
+
+**The evaluation slices were tautological.** The first fixture generator derived the human label
+from the same tag it used to construct the item, so every slice came out at 0% or 100%. The
+slices were reporting the generator back to itself. Fixed by making a seeded fraction of
+reviewers depart from the construction, which is what a real reviewer does.
+
+**One case number in sixty verified.** CNJ numbers carry ISO 7064 mod 97-10 check digits. The
+generator picked its digits from an arithmetic sequence, and one landed on the correct value by
+accident — enough for the secret scanner to flag it as a real case number. It was still dated
+2099 and could not have been a real case, but "obviously fake" is not a property worth assuming.
+The generator now computes the correct digits and returns something else, and a test asserts
+that none of the sixty verify.
+
+**`pip install -e ".[dev]"` installed nothing.** The dev tools were declared under
+`[dependency-groups]`, which pip ignores when resolving an extra. It passed locally only because
+ruff and pytest were already on the machine; CI found it immediately with `ruff: command not
+found`. The local pass was the misleading signal, and the fix was verified in a clean virtual
+environment rather than on the machine that had hidden the bug.
+
+**A Wilson interval was nearly applied to Fleiss' raw agreement.** With two raters an item either
+matches or does not, so raw agreement is a binomial proportion and Wilson is right. With three or
+more, the figure is the mean of per-item agreement *proportions* and Wilson is the wrong interval
+— it would have printed, looked entirely normal, and been wrong. The two cases now use Wilson and
+a seeded bootstrap respectively, with the reason in a comment next to each.
+
+**Rejected:** a plan to extract the evaluation benches that already live inside two other
+repositories in this portfolio. A third copy of the same idea is worse than not having it. This
+repository was built from nothing with only what those benches do not do — several graders over
+the same items, agreement between them, calibration against a human, and a paired comparison.
+
+**Validated:** CI regenerates the fixtures from the seed and fails on any diff, runs the whole
+evaluation offline on two Python versions, and greps for CPF- and CNPJ-shaped strings and for any
+case number outside the 2099 convention. Expected values in `tests/test_stats.py` were computed
+independently of the implementation — a test that asserts the code does what the code does tests
+nothing. Commits were made with an AI assistant; attribution trailers are omitted and the usage
+is documented here.
+
+## Data and privacy
+
+Nothing here came from a real case.
+
+The sixty court decisions in `fixtures/` are generated by `scripts/make_fixtures.py` from a fixed
+seed. The court, the municipality and the state are invented. Every case number is dated **2099**
+and every one fails its check digits. There are no names, no CPF, no CNPJ, no OAB number, and no
+monetary amount tied to anything real.
+
+That claim is enforced rather than asserted: CI regenerates the fixtures and fails on any diff,
+so a file that came from somewhere else could not survive the check, and neither could an edit
+made by hand to flatter a number.
+
+The two recorded model graders are synthetic too. `judge-lenient` and `judge-strict` are seeded
+profiles built to fail in opposite directions, not transcripts of any model's output.
+
+The package never sends anything anywhere. There is no network code in it at all — not disabled,
+absent — which is why the demo and the full test suite run with no key.
+
+## Tests
+
+```bash
+pip install -e ".[dev]"
+pytest          # 73 tests
+ruff check .
+ruff format --check .
+```
+
+Three suites. `test_stats.py` pins the mathematics against values computed by hand or from
+published worked examples. `test_harness.py` covers the items, the graders, the calibration and
+— at most length — **the two refusals**, because a measurement tool whose guard rails are
+conventions has no guard rails. `test_cli.py` runs the real commands against the shipped
+fixtures, including one that runs the demo twice and asserts the output is byte-identical.
+
+## Built with
+
+Python 3.12+, the standard library, and nothing else at runtime. `pytest` and `ruff` for
+development; `anthropic` behind an optional extra that nothing shipped imports. Developed with an
+AI coding assistant; what it got wrong, and what caught it, is in the section above.
 
 ## Licence
 
