@@ -267,7 +267,14 @@ class PairedComparison:
     def describe(self) -> str:
         if self.discordant == 0:
             return f"the two runs agreed on all {self.n} items, so there is nothing to compare"
-        direction = "better" if self.only_after > self.only_before else "worse"
+        if self.only_after > self.only_before:
+            direction = "better"
+        elif self.only_before > self.only_after:
+            direction = "worse"
+        else:
+            # The ternary this replaces had no equality branch, so five fixes against five
+            # breakages was reported, in bold, as "the change looks worse".
+            direction = "unchanged on balance"
         verdict = "significant" if self.significant else "not significant"
         return (
             f"{self.only_after} item(s) fixed, {self.only_before} broken, "

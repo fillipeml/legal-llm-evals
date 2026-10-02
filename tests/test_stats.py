@@ -213,3 +213,18 @@ class TestBootstrap:
     def test_no_values_is_refused(self) -> None:
         with pytest.raises(ValueError):
             bootstrap_mean([])
+
+
+def test_an_even_trade_is_not_reported_as_worse() -> None:
+    """Equal fixes and breakages is not a regression, and the word is printed in bold.
+
+    The ternary had no equality branch, so `better if after > before else "worse"` called an
+    even trade worse. It is the one case where the reader most needs the harness to be exact,
+    because the counts are the same and only the label tells them which way to read it.
+    """
+    before = [True] * 5 + [False] * 5 + [True] * 10
+    after = [False] * 5 + [True] * 5 + [True] * 10
+    result = mcnemar(before, after)
+    assert result.only_before == result.only_after == 5
+    assert "unchanged on balance" in result.describe()
+    assert "worse" not in result.describe()
