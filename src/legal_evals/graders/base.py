@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Protocol
 
@@ -60,6 +61,10 @@ def normalise(text: str) -> str:
 #: Numbers, percentages and money, which are the values that have to match exactly.
 _NUMBER = re.compile(r"\d+(?:[.,]\d+)*\s*%?")
 
+#: A full stop used to group thousands rather than to mark a decimal: exactly three digits
+#: after every stop. "1.000" and "1.234.567" match; "1.5" and "1.0000" do not.
+_GROUPED = re.compile(r"\d{1,3}(?:\.\d{3})+")
+
 
 def numbers_in(text: str) -> list[str]:
     """Every number in the text, canonicalised so 1.000,50 and 1000.5 compare equal.
@@ -67,6 +72,14 @@ def numbers_in(text: str) -> list[str]:
     Brazilian decimal notation groups thousands with a full stop and separates the decimal with
     a comma, which is the opposite of the convention most parsers assume. Getting this wrong
     turns a correct answer into a failed one, a thousandfold.
+
+    The first version of this function did it wrong in exactly the way the paragraph above
+    warns about: it applied the rule only when a comma was present, so "R$ 1.000" came back as
+    1 and a grader scored "R$ 1,00" as a correct extraction of a thousand reais. A round
+    thousand is the commonest figure in a judgment, so the case that broke was the likely one.
+
+    Grouping is recognised by shape: a full stop followed by exactly three digits, repeated.
+    That leaves "1.5" alone, which no Brazilian document means as fifteen hundred.
     """
     found: list[str] = []
     for raw in _NUMBER.findall(text):
@@ -75,10 +88,14 @@ def numbers_in(text: str) -> list[str]:
         digits = token.rstrip("%")
         if "," in digits:
             digits = digits.replace(".", "").replace(",", ".")
+        elif _GROUPED.fullmatch(digits):
+            digits = digits.replace(".", "")
         value = digits.rstrip(".")
         try:
-            canonical = f"{float(value):g}"
-        except ValueError:
+            # Decimal, not float: f"{float(x):g}" caps at six significant digits, so two
+            # amounts in the millions that differ in the last digits compared equal.
+            canonical = format(Decimal(value).normalize(), "f")
+        except (InvalidOperation, ValueError):
             canonical = value
         found.append(canonical + ("%" if is_percent else ""))
     return found

@@ -302,3 +302,32 @@ class TestReport:
         result = run_graders(small, [RuleGrader()])
         rendered = render(build(small, result.run), small)
         assert "too small" in rendered
+
+
+class TestBrazilianAmounts:
+    """The thousands separator, which the module's own docstring warns about."""
+
+    def test_a_round_thousand_is_not_one(self) -> None:
+        # The bug this pins: the rule was applied only when a comma was present, so a round
+        # thousand — the commonest figure in a judgment — came back as 1.
+        assert numbers_in("R$ 1.000") == ["1000"]
+        assert numbers_in("R$ 1.234.567") == ["1234567"]
+        assert numbers_in("R$ 2.000.000") == ["2000000"]
+
+    def test_a_decimal_comma_still_wins(self) -> None:
+        assert numbers_in("R$ 1.000,50") == ["1000.5"]
+        assert numbers_in("R$ 1.234.567,89") == ["1234567.89"]
+
+    def test_a_single_digit_group_is_left_as_a_decimal(self) -> None:
+        # No Brazilian document means "1.5" as fifteen hundred.
+        assert numbers_in("1.5") == ["1.5"]
+
+    def test_two_large_amounts_do_not_collapse_into_one(self) -> None:
+        # f"{float(x):g}" capped at six significant digits, so these compared equal.
+        assert numbers_in("R$ 1.234.567") != numbers_in("R$ 1.234.568")
+
+    def test_the_grader_fails_an_amount_that_lost_its_thousands(self) -> None:
+        verdict = RuleGrader().grade(
+            item(gold="Condenação de R$ 1.000.", candidate="Condenação de R$ 1,00.")
+        )
+        assert verdict.label == "incorrect"
