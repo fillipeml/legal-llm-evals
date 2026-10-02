@@ -11,12 +11,10 @@ dependencies = []
 
 [project.optional-dependencies]
 claude = ["anthropic>=1.8"]
+dev = ["pytest>=8", "ruff>=0.6"]
 
 [project.scripts]
 evals = "legal_evals.cli:main"
-
-[dependency-groups]
-dev = ["pytest>=8", "ruff>=0.6"]
 
 [build-system]
 requires = ["hatchling"]
